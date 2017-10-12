@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import $ from 'jquery'
 
-import App from './App/App.js'
+import { getLyrics as getLyricsFromApi } from '../services/apiLyrics'
+
+import App from '../components/App'
 
 class AppContainer extends Component {
   constructor() {
@@ -15,11 +16,8 @@ class AppContainer extends Component {
   }
 
   getLyrics( band, song ) {
-    const url =  `https://api.lyrics.ovh/v1/${band}/${song}`
 
-    $.ajax({
-        url
-      })
+    getLyricsFromApi(band, song)
       .then( dataFromApi => {
         this.setState({
           band: band,
